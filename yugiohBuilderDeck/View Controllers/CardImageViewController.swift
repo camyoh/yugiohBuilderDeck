@@ -14,11 +14,6 @@ class CardImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if let stringUrl = card?.card_images[0].image_url {
-//            let url = URL(string: stringUrl)!
-//            downloadImage(from: url)
-//        }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,15 +39,4 @@ class CardImageViewController: UIViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

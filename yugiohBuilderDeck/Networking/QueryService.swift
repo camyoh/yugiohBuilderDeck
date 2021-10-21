@@ -58,23 +58,6 @@ class QueryService {
     }
     
     private func updateSearchResults(_ data: Data) -> [Card] {
-//        var response: JSONDictionary?
-        
-//        cards.removeAll()
-        
-//        do {
-//            response = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary
-//        } catch let parseError as NSError {
-//            errorMessage += "JSONSerialization error: \(parseError.localizedDescription)\n"
-//            return
-//        }
-//
-//        guard let array = response!["data"] as? [JSONDictionary] else {
-//            errorMessage += "Dictionary does not contain results key\n"
-//            return
-//        }
-//        cards = try! JSONDecoder().decode([Card].self, from: JSONSerialization.data(withJSONObject: array))
-//
         do {
             return try decoder.decode(DataResponse.self, from: data).data
         } catch {

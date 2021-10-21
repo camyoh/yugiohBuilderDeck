@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     // MARK: - Constants
     
     let queryService = QueryService()
-    let loader = ImageLoader()
     var selectedCard: Card?
     
     // MARK: - IBOutlets
@@ -97,32 +96,7 @@ extension ViewController: UITableViewDataSource {
                 }
             }
         }
-        
-        
-//        if let imageUrl = URL(string: cards[indexPath.row].card_images[0].image_url_small) {
-//            let token = loader.loadImage(imageUrl) { result in
-//                do {
-//                    let image = try result.get()
-//
-//                    DispatchQueue.main.async {
-//                        content.image = image
-//                    }
-//                } catch {
-//                    print(error)
-//                }
-//            }
-//        }
-        
-        
 
-//        content.imageProperties.maximumSize = CGSize(width: 40, height: 40)
-//        var imageData: Data
-//        let imageUrlString = cards[indexPath.row].card_images[0].image_url
-//        if let imageUrl = URL(string: imageUrlString) {
-//            imageData = Data(contentsOf: imageUrl)
-//        }
-        
-        
         cell.contentConfiguration = content
         return cell
     }
