@@ -23,20 +23,27 @@ class CardImageViewController: UIViewController {
               let url = URL(string: stringUrl) else {
                   return
               }
-        downloadImage(from: url)
-    }
-    
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    
-    func downloadImage(from url: URL) {
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() { [weak self] in
-                self?.cardImage.image = UIImage(data: data)
+        ImageService.downloadImage(from: url) { image in
+            if image != nil {
+                DispatchQueue.main.async() { [weak self] in
+                    self?.cardImage.image = image
+                }
             }
         }
+//        downloadImage(from: url)
     }
+    
+//    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+//    }
+//
+//    func downloadImage(from url: URL) {
+//        getData(from: url) { data, response, error in
+//            guard let data = data, error == nil else { return }
+//            DispatchQueue.main.async() { [weak self] in
+//                self?.cardImage.image = UIImage(data: data)
+//            }
+//        }
+//    }
     
 }

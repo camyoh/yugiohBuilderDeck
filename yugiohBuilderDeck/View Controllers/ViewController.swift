@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     let queryService = QueryService()
     var selectedCard: Card?
+    let getImage = ImageService()
     
     // MARK: - IBOutlets
     
@@ -39,19 +40,18 @@ class ViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    
-    func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() {
-                completion(UIImage(data: data))
-//                self?.cardImage.image = UIImage(data: data)
-            }
-        }
-    }
+//    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+//    }
+//
+//    func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
+//        getData(from: url) { data, response, error in
+//            guard let data = data, error == nil else { return }
+//            DispatchQueue.main.async() {
+//                completion(UIImage(data: data))
+//            }
+//        }
+//    }
 }
 
 // MARK: - Search Bar Delegate
@@ -89,12 +89,18 @@ extension ViewController: UITableViewDataSource {
         
         if let stringUrl = cards[indexPath.row].card_images.first?.image_url_small,
            let url = URL(string: stringUrl) {
-            downloadImage(from: url) { image in
+            getImage.downloadImage(from: url) { image in
                 if image != nil {
                     content.image = image
                     cell.contentConfiguration = content
                 }
             }
+//            downloadImage(from: url) { image in
+//                if image != nil {
+//                    content.image = image
+//                    cell.contentConfiguration = content
+//                }
+//            }
         }
 
         cell.contentConfiguration = content
